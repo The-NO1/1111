@@ -14,14 +14,14 @@
                 <i class="icn"></i>
               </div>
               <div class="bd">
-                <h3>
+                <h3 class="h3-banner">
                   <a href="/discover/playlist/" class="j-flag u-btn u-btn-g s-fc1" data-cat="全部">
                     <em>全部风格</em>
                   </a>
                 </h3>
                 <dl class="f-cb">
                   <dt>
-                    <i class="u-icn u-icn-71"></i>语种
+                    <i class="el-icon-aim"></i>语种
                   </dt>
                   <dd>
                     <a
@@ -58,7 +58,7 @@
                 </dl>
                 <dl class="f-cb">
                   <dt>
-                    <i class="u-icn u-icn-6"></i>风格
+                    <i class="u-icn el-icon-s-fold"></i>风格
                   </dt>
                   <dd>
                     <a
@@ -203,7 +203,7 @@
                 </dl>
                 <dl class="f-cb">
                   <dt>
-                    <i class="u-icn u-icn-7"></i>场景
+                    <i class="u-icn el-icon-coffee-cup"></i>场景
                   </dt>
                   <dd>
                     <a
@@ -282,7 +282,7 @@
                 </dl>
                 <dl class="f-cb">
                   <dt>
-                    <i class="u-icn u-icn-8"></i>情感
+                    <i class="u-icn el-icon-s-custom"></i>情感
                   </dt>
                   <dd>
                     <a
@@ -361,7 +361,7 @@
                 </dl>
                 <dl class="f-cb">
                   <dt>
-                    <i class="u-icn u-icn-9"></i>主题
+                    <i class="u-icn el-icon-chat-dot-round"></i>主题
                   </dt>
                   <dd class="last">
                     <a
@@ -632,11 +632,93 @@
   </div>
 </template>
 <script>
+
+import request from '../../utils/axaj'
 export default {
+
+  data () {
+    return {
+      playlists: {}
+    }
+  },
+  async mounted (id) {
+    let result = await this.request.get("/related/playlist")
+    this.playlists = result;
+    console.log(this.playlists);
+    console.log(result);
+
+  },
+  methods: {
+
+  }
 
 }
 </script>
-<style  lang="less" rel="stylesheet/less" scoded>
+<style  lang="less" rel="stylesheet/less" scoped>
+.cateBanner /deep/ #cateListBox {
+  width: 700px;
+  height: 480px;
+  // position: relative;
+  // background-color: #f80;
+  color: #333;
+  font-size: 12px;
+  dl {
+    width: 700px;
+    position: relative;
+    display: flex;
+    .f-cb {
+      display: flex;
+    }
+    dt {
+      width: 71px;
+      margin: 30px;
+      display: block;
+    }
+    dt i {
+      font-size: 28px;
+      vertical-align: middle;
+    }
+    dd {
+      width: 604px;
+      margin-left: 96px;
+      padding: 16px 15px 0 15px;
+      border-left: 1px solid #e6e6e6;
+      line-height: 24px;
+      // display: inline-block;
+      margin-inline-start: 10px;
+      display: list-item;
+      align-items: center;
+    }
+  }
+  a {
+    color: #333;
+    margin: 0 10px;
+    display: inline-block;
+  }
+  .bd {
+    display: block;
+    width: 700px;
+    height: 100%;
+    // margin: 10px auto;
+    .h3-banner {
+      width: 100%;
+      height: 50px;
+      border-bottom: solid 1px #e6e6e6;
+      color: #000;
+      vertical-align: middle;
+    }
+    .j-flag {
+      display: block;
+      width: 76px;
+      height: 26px;
+      border: 1px #333 solid;
+      border-radius: 4px;
+      line-height: 26px;
+      text-align: center;
+      margin: 20px;
+    }
+  }
+}
 .songsListContainer {
   .pagination {
     float: right;
@@ -649,15 +731,10 @@ export default {
     .songsList-headerItem {
       padding: 10px;
       align-items: center;
-      /deep/.elDown {
+      .elDown {
         vertical-align: middle;
         width: 60px;
         height: 30px;
-        .cateBanner {
-          .bd {
-            width: 700px;
-          }
-        }
       }
       .hotDj {
         float: right;
